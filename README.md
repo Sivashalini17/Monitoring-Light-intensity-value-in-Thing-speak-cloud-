@@ -1,6 +1,7 @@
-# Monitoring-Light-intensity-value-in-Thing-speak-cloud
+# EXPERIMENT 4 : Monitoring-Light-intensity-value-in-Thing-speak-cloud
 # Uploading LDR sensor data in Thing Speak cloud
-
+NAME : SIVA SHALINI.S
+REG NO :24009860
 # AIM:
 To monitor the Light-intensity value in the Thing speak cloud using LDR sensor and ESP32 controller.
 # Apparatus required:
@@ -90,11 +91,87 @@ Prototype and build IoT systems without setting up servers or developing web sof
 
  
 # PROGRAM:
+```
+#include" ThingSpeak.h"
+
+#include <WiFi.h>
+
+char ssid[]="Redmi Note 13";
+
+char pass[]="simba@wifi";
+
+const int LDR_PIN=34;
+
+//#define LDR_PIN 34
+
+WiFiClient client;
+
+unsigned long myChannelField 2787763;
+
+const int ChannelField1=1;
+
+const char *mywriteAPIKey="PKCC6R31913SWAWT";
+
+void setup()
+
+{
+
+// Initialize serial communication at 115200 baud rate
+
+Serial.begin(115200);
+
+pinMode (LDR PIN, OUTPUT);
+
+WiFi.mode(WIFI STA);
+
+ThingSpeak.begin(client);
+
+Serial.println("LDR Sensor with ESP32 WROOM");
+
+delay(1000);
+
+void loop()
+
+{ if(WiFi.status()!=WL_CONNECTED)
+
+Serial.print("Attempting to connet to SSID: ");
+
+Serial.println(ssid);
+
+while(WiFi.status() != WL CONNECTED)
+
+WiFi.begin(ssid, pass);
+
+Serial.print(".");
+
+delay(5000);
+
+Serial.println("\nConnected");
+
+// Read the value from the LDR
+
+int IdrValue analogRead(LDR_PIN);
+
+// Print the LDR value to the Serial Monitor
+
+Serial.print("LOR Value: ");
+
+Serial.println(1drvalue);
+
+ThingSpeak.writeField(@yChannelField, ChannelFieldi, Idrvalue, mywriteAPIKey);
+
+// Optional: Add a delay for a sore stable output
+
+delay(1000); // 1-second delay between readings
+```
+
 # CIRCUIT DIAGRAM:
+![image](https://github.com/user-attachments/assets/eeba0ec5-8cd6-43e2-80b0-4ba0e8d2ee72)
+
 # OUTPUT:
+![image](https://github.com/user-attachments/assets/fd57c665-5b70-4927-b152-8936708d1dc8)
+![image](https://github.com/user-attachments/assets/9e16db1f-5899-4b08-833d-64e8abddaa9d)
+
 # RESULT:
 
 Thus the light intensity values are updated in the Thing speak cloud using ESP32 controller.
-
-
-
